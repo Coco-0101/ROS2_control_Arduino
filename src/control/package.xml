@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>servo_control</name>
+  <name>control</name>
   <version>0.0.0</version>
-  <description>control servo motor</description>
+  <description>Control Arduino in ROS2</description>
   <maintainer email="a1095105@mail.nuk.edu.tw">betty</maintainer>
   <license>TODO: License declaration</license>
   <depend>rclpy</depend>

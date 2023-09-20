@@ -1,0 +1,7 @@
+ament_copyright==0.9.8
+ament_flake8==0.9.8
+ament_pep257==0.9.8
+pyserial==3.5
+pytest==4.6.9
+setuptools==44.0.0
+xbox360controller==1.1.2

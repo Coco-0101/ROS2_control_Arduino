@@ -12,7 +12,7 @@ class CommunicationNode(Node):
         super().__init__("serial_comm")
 
         # Declare parameters for serial port and baud rate
-        self.declare_parameter("serial_port", "/dev/ttyUSB0")
+        self.declare_parameter("serial_port", "/dev/ttyACM0")
         self.declare_parameter("baud_rate", 115200)
         self.declare_parameter("subscribe_to", "arduino_command")
 
@@ -56,12 +56,12 @@ class CommunicationNode(Node):
 
     def write_serial_data(self, msg: String):
             try:
-                msg = input("Enter a command ('0', '1', or '2') to control Arduino: ")
-                if msg in ('0', '1', '2'):
+                msg = input("Enter a command (0 ~ 8) to control Arduino: ")
+                if msg in ('0', '1', '2', '3', '4', '5', '6', '7', '8'):
                     serial_comm.write(msg.encode("utf-8"))
                     # self.get_logger().info(f"Sent command to Arduino: {msg}")
                 else:
-                    self.get_logger().info("Invalid command. Please enter '0', '1', or '2'.")
+                    self.get_logger().info("Invalid command. Please enter command in 0 ~ 8.")
             except Exception as e:
                 self.get_logger().warn("Serial communication error. -Writing")
                 self.get_logger().warn(repr(e))

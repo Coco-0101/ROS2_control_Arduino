@@ -1,6 +1,6 @@
 from setuptools import setup
 
-package_name = 'servo_control'
+package_name = 'control'
 
 setup(
     name=package_name,
@@ -15,13 +15,14 @@ setup(
     zip_safe=True,
     maintainer='betty',
     maintainer_email='a1095105@mail.nuk.edu.tw',
-    description='Package for read and publish serial communication data to ROS2 system.',
+    description='Control Arduino in ROS2',
     license='TODO: License declaration',
     tests_require=['pytest'],
     entry_points={
-	    'console_scripts': [
-            "find_ports = servo_control.find_ports:main",
-            "servo = servo_control.servo:main",
-	    ],
+        'console_scripts': [
+            "find_ports = control.find_ports:main",
+            "remote_controller = control.remote_controller:main",
+            "keyboard = control.keyboard:main",
+        ],
     },
 )
