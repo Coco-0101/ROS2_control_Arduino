@@ -21,7 +21,9 @@ setup(
     entry_points={
         'console_scripts': [
             "find_ports = control.find_ports:main",
+            "local_controller = control.local_controller:main",
             "remote_controller = control.remote_controller:main",
+            "arduino_subscriber = control.arduino_subscriber:main",
             "keyboard = control.keyboard:main",
         ],
     },

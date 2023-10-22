@@ -111,7 +111,7 @@ void loop() {
       break;
 
     case SHIFT_LEFT:      // Shift left
-      ABCD_DIR(LOW, HIGH, HIGH, LOW);
+      ABCD_DIR(HIGH, LOW, LOW, HIGH);
       prevSig = signal;
       prevChangeSig = signal;
       for (; speed <= max_speed; speed += acc) {
@@ -128,7 +128,7 @@ void loop() {
       break;
 
     case SHIFT_RIGHT:     // Shift right
-      ABCD_DIR(HIGH, LOW, LOW, HIGH);
+      ABCD_DIR(LOW, HIGH, HIGH, LOW);
       prevSig = signal;
       prevChangeSig = signal;
       for (; speed <= max_speed; speed += acc) {
