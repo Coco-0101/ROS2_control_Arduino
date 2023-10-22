@@ -45,22 +45,37 @@ To run these code you need to know correct port path, baud rate and if you want 
 
     ros2 run control <node_name> --ros-args -p serial_port:=<device_port> -p baud_rate:=<baud_rate> -p subscribe_to:=<topic_name>
 
-#### Using `keyboard` to publish message from keyboard
+#### Local control
+##### Using `keyboard` to publish message from keyboard
 
     ros2 run control keyboard --ros-args -p serial_port:=/dev/ttyACM0  -p baud_rate:=115200 -p subscribe_to:=arduino_command
 
-#### Using `remote_controller` to publish message from remote controller
+###### (Without parameters)
+    ros2 run control keyboard
 
-    ros2 run control remote_controller --ros-args -p serial_port:=/dev/ttyACM0  -p baud_rate:=115200 -p subscribe_to:=arduino_command
+##### Using `local_control` to publish message from remote controller and subscribe message in local terminal
 
-#### Without parameters
+    ros2 run control local_control --ros-args -p serial_port:=/dev/ttyACM0  -p baud_rate:=115200 -p subscribe_to:=arduino_command
+
+###### (Without parameters)
+    ros2 run control local_control
+
+#### Remote control
+##### Using `remote_controller` to publish message from remote controller in local terminal
+
+    ros2 run control remote_controller
+
+##### And using `arduino_subscriber` to subscribe message in remote terminal
+
+    ros2 run control arduino_subscriber --ros-args -p serial_port:=/dev/ttyACM0  -p baud_rate:=115200 -p subscribe_to:=arduino_command
+
+###### (Without parameters)
+    ros2 run control arduino_subscriber
+
+#### Parameters
 ##### Default setting
 - device_port : /dev/ttyACM0
 - baud_rate : 115200
 - subscribe to arduino_command
-###### keyboard
-    ros2 run control keyboard
-###### remote controller
-    ros2 run control remote_controller
 
 >Note: Baud rate of the arduino/XXX.ino and the node need to be same.
