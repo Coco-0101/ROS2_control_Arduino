@@ -3,41 +3,61 @@
 Servo shootGate;  // 建立servo物件
 Servo shootRod;
 Servo supplyRod;
-char signal;
+
+int signal;
+char _;
+
+const int SHUTDOWN = 0;
+const int FIRE = 6;
+const int RELOAD = 7;
 
 void setup() {
   Serial.begin(115200); // Set Baud rate
-  shootGate.attach(6);  // PIN for the launching gate
-  shootRod.attach(7);   // PIN for the launching rod
-  supplyRod.attach(8);  // PIN for the supplementary rod
-  shootGate.write(10);
-  shootRod.write(10);
-  supplyRod.write(10);
+  shootGate.attach(8);  // PIN for the launching gate
+  shootRod.attach(9);   // PIN for the launching rod
+  supplyRod.attach(10);  // PIN for the supplementary rod
+  shootGate.write(35);
+  delay(200);
+  shootRod.write(180);
+  delay(200);
+  supplyRod.write(0);
 }
 
 void loop() {
-  if(Serial.available()>0){
+  if(Serial.available()){
     signal = Serial.read();
-    if(signal == '6'){
-    shootGate.write(150); 
-    delay(1000);
-    shootGate.write(10);
-    delay(1000);
-    }else if(signal == '7'){
-      shootRod.write(150);
-      delay(1500);
-      shootRod.write(10);
+    signal -= 48;
+    _ = Serial.read();
+    if(signal == FIRE){
+      shootGate.write(0);
+      delay(200);
+      shootRod.write(80);
+      delay(800);
+      shootRod.write(180);
+      delay(800);
+      shootGate.write(35);
+      delay(200);
+    }else if(signal == RELOAD){
+      shootGate.write(0);
+      delay(200);
+      shootRod.write(80);
+      delay(800);
+      supplyRod.write(80);
+      delay(800);
+      supplyRod.write(0);
       delay(1000);
-    }else if(signal == '8'){
-      supplyRod.write(150);
-      delay(1000);
-      supplyRod.write(10);
-      delay(1000);
-    }else if(signal == '0'){
-      shootGate.write(10);
-      shootRod.write(10);
-      supplyRod.write(10);
-      delay(1000);
+      shootRod.write(180);
+      delay(800);
+      shootGate.write(35);
+      delay(200);
+    }else if(signal == SHUTDOWN){
+      shootGate.write(35);
+      delay(200);
+      shootRod.write(180);
+      delay(800);
+      supplyRod.write(0);
+      delay(800);
     }
   }
+
 }
