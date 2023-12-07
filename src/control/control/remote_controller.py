@@ -27,11 +27,13 @@ def main(args=None):
         if button.name == "button_start":
             minimal_publisher.send_message(0, "Shutdown")
         elif button.name == "button_a":
-            minimal_publisher.send_message(7, "Fire")
-        elif button.name == "button_b":
-            minimal_publisher.send_message(6, "Open the gate")    
-        elif button.name == "button_trigger_l" or button.name == "button_trigger_r":
-            minimal_publisher.send_message(8, "Reload")
+            minimal_publisher.send_message(6, "Fire")
+        elif button.name == "button_y":
+            minimal_publisher.send_message(7, "Reload")    
+        elif button.name == "button_trigger_l":
+            minimal_publisher.send_message(8, "Turn left")
+        elif button.name == "button_trigger_r":
+            minimal_publisher.send_message(9, "Turn right")
 
     def on_axis_moved(axis):
         if axis.name == "axis_l":
@@ -40,9 +42,9 @@ def main(args=None):
             elif 0.77 >= axis.x >= -0.77 and 1 >= axis.y >= 0.77:
                 minimal_publisher.send_message(2, "Backward")
             elif -0.77 >= axis.x >= -1 and 0.77 >= axis.y >= -0.77:
-                minimal_publisher.send_message(3, "Turn left")
+                minimal_publisher.send_message(3, "Shift left")
             elif 1 >= axis.x >= 0.77 and 0.77 >= axis.y >= -0.77:
-                minimal_publisher.send_message(4, "Turn right")
+                minimal_publisher.send_message(4, "Shift right")
 
     def on_trigger_moved(trigger):
         if trigger.name == "trigger_l" or trigger.name == "trigger_r":
