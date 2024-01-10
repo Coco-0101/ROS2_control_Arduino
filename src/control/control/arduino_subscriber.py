@@ -1,7 +1,6 @@
 import rclpy
 import time
 from rclpy.node import Node
-from std_msgs.msg import Int8
 from std_msgs.msg import String, Int8
 import serial
 
